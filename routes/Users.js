@@ -197,6 +197,9 @@ const verifyToken = (req, res, next) => {
     // Verify the token
     try {
       console.log("Secret Key:", secretKey);
+      console.log("Final Token:", token);
+      const case_decoded = jwt.verify(token);
+      console.log("Decoded Token:", case_decoded);
       const decoded = jwt.verify(token, secretKey);
       console.log("Decoded Token:", decoded);
       
