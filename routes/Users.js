@@ -347,8 +347,8 @@ Users.post("/register", async (req, res) => {
     }
 
     // Generate profile URL
-    let baseProfileURL = generateSlug(`${req.body.first_name}`);
-    let GProfileURL = baseProfileURL;
+    // let baseProfileURL = generateSlug(`${req.body.first_name}`);
+    let GProfileURL = req.body.first_name;
     let counter = Math.floor(Math.random() * 9) + 2;
 
     // Check if Profile URL exists
