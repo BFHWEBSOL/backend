@@ -112,9 +112,11 @@ router.get("/platforms", verifyToken, async (req, res) => {
     console.log('Check what -1- Received > ', req.decoded.id);
     // console.log('Check what -2- Received > ', req.decoded.id);
     let { data: socialLinks, error } = await db.supabase
-    .from("user_social_links")
-    .select("id, social_link, user_social_status, created, updated, social_media_platforms: social_type_id(*)")
-    .eq("user_id", req.decoded.id); // Assuming userId is the parameter passed
+    // .from("user_social_links")
+    // .select("id, social_link, user_social_status, created, updated, social_media_platforms: social_type_id(*)")
+    // .eq("user_id", req.decoded.id); // Assuming userId is the parameter passed
+        .from("social_media_platforms")
+        .select(`*`);
 
     // let { data: socialLinks, error } = await db.supabase
     // .from("social_media_platforms")
@@ -130,19 +132,19 @@ router.get("/platforms", verifyToken, async (req, res) => {
     }
 
     // If no records are found for the user, return all user_social_links
-    if (!socialLinks || socialLinks.length === 0) {
-      let { data: allSocialLinks, error: allError } = await db.supabase
-        // .from("user_social_links")
-        // .select("id, social_link, user_social_status, created, updated, social_media_platforms: social_type_id(*)");
-        .from("social_media_platforms")
-        .select(`*`);
+    // if (!socialLinks || socialLinks.length === 0) {
+    //   let { data: allSocialLinks, error: allError } = await db.supabase
+    //     // .from("user_social_links")
+    //     // .select("id, social_link, user_social_status, created, updated, social_media_platforms: social_type_id(*)");
+    //     .from("social_media_platforms")
+    //     .select(`*`);
 
-      if (allError) {
-        return res.status(500).json({ status: false, message: "Database error", error: allError });
-      }
+    //   if (allError) {
+    //     return res.status(500).json({ status: false, message: "Database error", error: allError });
+    //   }
 
-      return res.status(200).json({ status: true, data: allSocialLinks });
-    }
+    //   return res.status(200).json({ status: true, data: allSocialLinks });
+    // }
 
     // If records exist for the given user_id, return them
     return res.status(200).json({ status: true, data: socialLinks });
