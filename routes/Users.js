@@ -10,7 +10,7 @@ const multer = require("multer");
 // const { jwtDecode } = require("jwt-decode");
 const emailConfig = require("../config/emailConfig");
 const nodemailer = require("nodemailer");
-const SECRET_KEY = process.env.SECRET_KEY || "secret";
+const SECRET_KEY = "hfs7823bsduf8723bhsd8723bsdhjfb8723hsd";
 console.log("Available models:", Object.keys(db));
 const User = db.User;
 // const jwt = require("jsonwebtoken");
