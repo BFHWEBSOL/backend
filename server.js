@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL,
-    'frontend-one-nu-27.vercel.app:3000'
+    'frontend-phi-green.vercel.app:3000'
   ],
   credentials: true
 }));
